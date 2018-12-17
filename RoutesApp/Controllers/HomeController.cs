@@ -8,9 +8,15 @@ namespace RoutesApp.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Index(int id = 1, string name ="")
         {
             return View();
+        }
+
+        public string GetController ()
+        {
+            string controller = RouteData.Values["controller"].ToString();
+            return controller;
         }
 
         public ActionResult About()
