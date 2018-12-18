@@ -13,11 +13,27 @@ namespace RoutesApp
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute(name: "Default", url: "{controller}/{action}/{id}/{*catchall}",
-                defaults: new {controller="Home", action="Index", id = UrlParameter.Optional});
+            routes.IgnoreRoute("Home/Index/12");
+
+            routes.MapRoute(name: "Default", url: "{controller}/{action}/{id}",
+                defaults: new {controller="Home", action="Index", id = UrlParameter.Optional}
+                ); //12 34
           
             //Route newRoute = new Route("{controller}, /{action}", new MvcRouteHandler());
             //routes.Add(newRoute);
+        }
+    }
+
+    public class CustomConstraint : IRouteConstraint
+    {
+        private string uri;
+        public CustomConstraint(string uri)
+        {
+            this.uri = uri;
+        }
+        public bool Match(HttpContextBase httpContext, Route route, string parameterName, RouteValueDictionary values, RouteDirection routeDirection)
+        {
+            return !(uri == httpContext.Request.Url.AbsolutePath);
         }
     }
 }
