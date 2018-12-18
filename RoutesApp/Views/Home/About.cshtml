@@ -5,3 +5,13 @@
 <h3>@ViewBag.Message</h3>
 
 <p>Use this area to provide additional information.</p>
+
+<a href="http://localhost:59038/Home/Index/3">ссылка</a>
+
+@Html.ActionLink("Ссылка 2", "Index", "Book", new { author = "Толстой", id = 5 }, new { id = "Tolstoy", @class = "link" })
+@Html.RouteLink("Все книги", new { controller = "Book", action = "Index", author = "Толстой", id = 10 }, new { id = "Tolstoy", @class = "link" });
+
+<a href='@Url.Action("Index", "Book", new { author = "Толстой", id = 10 })'>Ссылка 3</a>
+@Url.RouteUrl(new { controller = "Book", action = "Index", author = "Толстой", id = 10 })
+
+<script src='@Url.Content("~/Scripts/jquery-3.3.1.js")'></script>

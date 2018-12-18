@@ -9,9 +9,9 @@ namespace RoutesApp.Controllers
     public class BookController : Controller
     {
         // GET: Book/index
-        public ActionResult Index()
+        public string Index(string author, int id)
         {
-            return View();
+            return author + " " + id.ToString();
         }
     }
 }
